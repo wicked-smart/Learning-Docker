@@ -11,7 +11,6 @@ env:
 jobs:
 
   hello-world:
-    id: foobar
     runs-on: ubuntu-latest
     if: github.event_name== 'issues' && (github.event.action == 'opened' || github.event.action == 'edited')
 

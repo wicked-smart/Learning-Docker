@@ -1,9 +1,34 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning Github Actions
-on: [push]
+name: comment-on-issue
+on:
+  issues:
+    types: [opened, edited]
+
+  workflow_dispatch:
+
+env:
+  ISSUE_NUM: ${{ github.event.issue.number }}
+
 jobs:
+
   hello-world:
+    id: foobar
     runs-on: ubuntu-latest
+    if: github.event_name== 'issues' && (github.event.action == 'opened' || github.event.action == 'edited')
+
     steps:
-      - uses: actions/checkout@v3
-      - run: echo "Hello, World!"
+
+      - name: checkout-and-echo
+        id: checkout
+        uses: actions/checkout@v2
+        with: 
+          ref: ${{ github.head_ref }}
+        run: |
+          comment= "Hello from this Issue #ISSUE_NUM"
+          ::set-output name=issue_comment::$comment
+      
+      - name: comment on an issue
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue_number: ${{ ISSUE_NUM }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: ${{ steps.checkout.outputs.issue_comment }}

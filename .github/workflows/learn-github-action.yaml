@@ -26,7 +26,7 @@ jobs:
         id: comments
         run: |
           comment="Hello from this Issue #ISSUE_NUM"
-          ::set-output name=issue_comment::$comment
+          echo "issue_comment=$comment" >> $GITHUB_OUTPUT
       
       - name: comment on an issue
         uses: peter-evans/create-or-update-comment@v1

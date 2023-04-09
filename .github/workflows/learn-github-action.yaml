@@ -13,7 +13,7 @@ jobs:
   hello-world:
     runs-on: ubuntu-latest
     permissions: 
-      issue: write
+      issues: write
     if: github.event_name== 'issues' && (github.event.action == 'opened' || github.event.action == 'edited')
 
     steps:

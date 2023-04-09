@@ -18,7 +18,7 @@ jobs:
 
       - name: checkout
         id: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with: 
           ref: ${{ github.head_ref }}
           
@@ -29,8 +29,9 @@ jobs:
           echo "issue_comment=$comment" >> $GITHUB_OUTPUT
       
       - name: comment on an issue
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v3
         with:
-          issue_number: ${{ env.ISSUE_NUM }}
+          issue-number: ${{ env.ISSUE_NUM }}
           token: ${{ secrets.GITHUB_TOKEN }}
           body: ${{ steps.comments.outputs.issue_comment }}
+          reactions: eyes

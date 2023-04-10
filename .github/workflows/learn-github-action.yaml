@@ -16,7 +16,7 @@ jobs:
     permissions:
       issues: write
 
-    if: github.event == 'issues' && (github.event.action == 'opened' || github.event.action == 'edited')
+    if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'edited')
 
     steps:
 

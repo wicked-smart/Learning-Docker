@@ -32,6 +32,7 @@ jobs:
         text: ${{ github.event.issue.body }}
         regex: 'Domain:\s*(.+)\s*$'
         flags: 'mg'
+      run: echo "your issue body:= ${{ github.event.issue.body }}" 
 
     
     - name: comment-on-issue
@@ -42,6 +43,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         issue-number: ${{ env.ISSUE_NUM }}
         body: "congrats! issue opened with proper format ${{ steps.domain-match.outputs.group1 }}"
+      
     
     - name: comment-on-issue-part-2  
       id: comment-on-issue-2

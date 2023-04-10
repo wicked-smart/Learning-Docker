@@ -43,8 +43,8 @@ jobs:
         issue-number: ${{ env.ISSUE_NUM }}
         body: "congrats! issue opened with proper format ${{ steps.domain-match.outputs.group1 }}"
     
-    - name: comment-on-issue part 2 
-      id: comment-on-issue 2
+    - name: comment-on-issue-part-2  
+      id: comment-on-issue-2
       if: ${{ steps.domain-match.output.match == '' }}
       uses: peter-evans/create-or-update-comment@v2
       with:

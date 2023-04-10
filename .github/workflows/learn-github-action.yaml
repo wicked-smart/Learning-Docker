@@ -36,7 +36,7 @@ jobs:
     
     - name: comment-on-issue
       id: comment-on-issue
-      if: ${{ jobs.domain-match.output.match != '' }}
+      if: ${{ steps.domain-match.output.match != '' }}
       uses: peter-evans/create-or-update-comment@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -45,7 +45,7 @@ jobs:
     
     - name: comment-on-issue part 2 
       id: comment-on-issue 2
-      if: ${{ jobs.domain-match.output.match == '' }}
+      if: ${{ steps.domain-match.output.match == '' }}
       uses: peter-evans/create-or-update-comment@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
